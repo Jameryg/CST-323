@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<meta charset="UTF-8">
+	<title>CST-339 Milestone 6.0 application</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div th:each="product : ${products}" align="center">
+   			<div class="card" style="max-width: 250px; border:lightgray; border-width:4px; border-style:solid; margin:5px; ">
+   				<div class="card-body">
+        			<div>
+                		<div style="height:242px; width:242px;overflow:hidden;">
+                    		<img th:src="@{/images/TesterImage.jpg}" width="250px" height="250px"/>
+				        </div>
+				    </div>
+					<div >
+					    <p class="card=text" th:text="*{product.description}">description</p>
+					    <p class="card-text">
+					    	weight: 
+				        	<small class="text-muted" th:text="*{product.weight}">5.5</small>
+				         	pounds
+					    </p>
+				        <p class="card-text">
+				        	total distance: 
+				         	<small class="text-muted" th:text="*{product.length}">3</small>
+				         	<small class="text-muted" th:text="*{product.measurementUnit}">feet</small>
+				        </p>
+				        <form action="#" th:action="@{updateProduct}" method="post">
+					        <input name="productId" th:value="${product.productId}" hidden/>
+					        <input name="image" th:value="${product.image}" hidden/>
+					        <input name="length" th:value="${product.length}" hidden/>
+					        <input name="measurementUnit" th:value="${product.measurementUnit}" hidden/>
+					        <input name="weight" th:value="${product.weight}" hidden/>
+					        <input name="description" th:value="${product.description}" hidden/>
+					    	<input type="submit" value="Edit" />
+				        </form>
+				        <form action="#" th:action="@{deleteProduct}" th:object="${product}" method="post">
+				        	<input name="productId" th:value="${product.productId}" hidden/>
+					        <input name="image" th:value="${product.image}" hidden/>
+					        <input name="length" th:value="${product.length}" hidden/>
+					        <input name="measurementUnit" th:value="${product.measurementUnit}" hidden/>
+					        <input name="weight" th:value="${product.weight}" hidden/>
+					        <input name="description" th:value="${product.description}" hidden/>
+				        	<input type="submit" value="Delete" />
+				        </form>
+					    <p></p>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

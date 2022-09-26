@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+	<head>
+		<meta charset="UTF-8">
+		<title>CST-339 Milestone 6.0 application</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<form action="#" th:action="@{processProduct}" th:object="${productsModel}" method="post">
+				<table>
+					<!-- Tape Measure Image Field -->
+					<tr>
+						<td>
+							Tape Measure Image:
+						</td>
+						<td>
+							<input type="file" accept="image/jpeg" th:field="*{image}" >
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Image Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Length Field -->
+					<tr>
+						<td>
+							Tape Measure Length:
+						</td>
+						<td>
+							<input type="number" step="any" th:field="*{length}" >
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('length')}" th:errors="*{length}">Tape Measure Length Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Measurement Unit Field -->
+					<tr>
+						<td>
+							Tape Measure Measurement Unit:
+						</td>
+						<td>
+							<input type="text" th:field="*{measurementUnit}" >
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('measurementUnit')}" th:errors="*{measurementUnit}">Tape Measure Measurement Unit Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Weight Field -->
+					<tr>
+						<td>
+							Tape Measure Weight (In Pounds):
+						</td>
+						<td>
+							<input type="number" step="any" th:field="*{weight}" >
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Tape Measure Weight Error</h5>
+						</td>					
+					</tr>
+					<!-- Tape Measure Description Field -->
+					<tr>
+						<td>
+							Tape Measure Description:
+						</td>
+						<td>
+							<input type="text" th:field="*{description}" >
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Tape Measure Description Error</h5>
+						</td>
+					</tr>	
+					<tr>
+						<td colspan="3">
+							<input type="submit" value="Submit" />
+						</td>
+					</tr>
+				</table>
+				<div th:if="${#fields.hasErrors('*')}">Current List of Errors:</div>
+				<div th:each="err : ${#fields.errors('*')}">
+					<span style="color:red" th:text="${err}" class="fieldError"></span>
+				</div>
+			</form>	
+		</div>
+	</body>
+</html>

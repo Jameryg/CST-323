@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+	<head>
+		<meta charset="UTF-8">
+		<title>CST-339 Milestone 5.0 application</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<form action="#" th:action="@{processDelete}" th:object="${productsModel}" method="post">
+				<div align="center">
+	   			<div class="card" style="max-width: 250px; border:lightgray; border-width:4px; border-style:solid; margin:5px; ">
+	   				<div class="card-body">
+	        			<div>
+	                		<div style="height:242px; width:242px;overflow:hidden;">
+	                    		<img th:src="@{/images/TesterImage.jpg}" width="250px" height="250px"/>
+					        </div>
+					    </div>
+						<div >
+						    <p class="card=text" th:text="*{description}">description</p>
+						    <p class="card-text">
+						    	weight: 
+					        	<small class="text-muted" th:text="*{weight}">5.5</small>
+					         	pounds
+						    </p>
+					        <p class="card-text">
+					        	total distance: 
+					         	<small class="text-muted" th:text="*{length}">3</small>
+					         	<small class="text-muted" th:text="*{measurementUnit}">feet</small>
+					        </p>
+						    <p></p>
+					    </div>
+					</div>
+				</div>
+			</div>
+			</br>
+			<input name="productId" th:value="*{productId}" hidden/>
+				<table>
+					<!-- Tape Measure Image Field -->
+					<tr>
+						<td>
+							Deleting Tape Measure Image:
+						</td>
+						<td>
+							<input type="text" accept="image/jpeg" th:field="*{image}" readonly>
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Image Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Length Field -->
+					<tr>
+						<td>
+							Deleting Tape Measure Length:
+						</td>
+						<td>
+							<input type="number" step="any" th:field="*{length}" readonly>
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('length')}" th:errors="*{length}">Tape Measure Length Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Measurement Unit Field -->
+					<tr>
+						<td>
+							Deleting Tape Measure Measurement Unit:
+						</td>
+						<td>
+							<input type="text" th:field="*{measurementUnit}" readonly>
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('measurementUnit')}" th:errors="*{measurementUnit}">Tape Measure Measurement Unit Error</h5>
+						</td>
+					</tr>
+					<!-- Tape Measure Weight Field -->
+					<tr>
+						<td>
+							Deleting Tape Measure Weight (In Pounds):
+						</td>
+						<td>
+							<input type="number" step="any" th:field="*{weight}" readonly>
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Tape Measure Weight Error</h5>
+						</td>					
+					</tr>
+					<!-- Tape Measure Description Field -->
+					<tr>
+						<td>
+							Deleting Tape Measure Description:
+						</td>
+						<td>
+							<input type="text" th:field="*{description}" readonly>
+						</td>
+						<td>
+							<h5 style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Tape Measure Description Error</h5>
+						</td>
+					</tr>	
+					<tr>
+						<td colspan="3">
+							Are you sure you want to delete this tape measure?
+							<th><input id="yes" style="background-color:green; border-color:black" type="submit" name="button" value="Yes"/></th>
+							<!--<th><input id="no" style="background-color: red; border-color:black" type="submit" name="button" value="No"/></th>-->
+						</td>
+					</tr>
+					
+				</table>
+			</form>	
+		</div>
+	</body>
+</html>
